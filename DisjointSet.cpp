@@ -11,14 +11,14 @@ public:
         }
     }
 
-    int findLeader(int x) {
+    int find(int x) {
         if(parent[x] == x)
             return x;
         
         return findLeader(parent[x]);
     }
 
-    void makeUnion(int x, int y) {
+    void union_make(int x, int y) {
         int rootx = findLeader(x);
         int rooty = findLeader(y);
 

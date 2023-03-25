@@ -1,10 +1,14 @@
 class DisjointSet {
-    vector<int> parent;
     vector<int> rank;
 public:
+    vector<int> parent;
     DisjointSet(int size) {
         parent.resize(size);
         rank.resize(size);
+
+        for(int i = 0; i < size; i++) {
+            parent[i] = i;
+        }
     }
 
     int findLeader(int x) {
@@ -19,10 +23,10 @@ public:
         int rooty = findLeader(y);
 
         if(rootx != rooty) {
-            if(rank[x] > rank[y])
+            if(rank[rootx] > rank[rooty])
                 parent[y] = x;
-            else if(rank[x] < rank[y])
-                parent[x] = y;
+            else if(rank[rootx] < rank[rooty])
+                parent[rootx] = y;
             else {
                 parent[x] = y;
                 rank[y]++;

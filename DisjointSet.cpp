@@ -1,7 +1,7 @@
 class DisjointSet {
     vector<int> rank;
-public:
     vector<int> parent;
+public:
     DisjointSet(int size) {
         parent.resize(size);
         rank.resize(size);
@@ -24,12 +24,12 @@ public:
 
         if(rootx != rooty) {
             if(rank[rootx] > rank[rooty])
-                parent[y] = x;
+                parent[rooty] = rootx;
             else if(rank[rootx] < rank[rooty])
-                parent[rootx] = y;
+                parent[rootx] = rooty;
             else {
-                parent[x] = y;
-                rank[y]++;
+                parent[rooty] = rootx;
+                rank[rootx]++;
             }
         }
     }

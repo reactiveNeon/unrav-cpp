@@ -15,12 +15,12 @@ public:
         if(parent[x] == x)
             return x;
         
-        return findLeader(parent[x]);
+        return find(parent[x]);
     }
 
-    void union_make(int x, int y) {
-        int rootx = findLeader(x);
-        int rooty = findLeader(y);
+    void join(int x, int y) {
+        int rootx = find(x);
+        int rooty = find(y);
 
         if(rootx != rooty) {
             if(rank[rootx] > rank[rooty])

@@ -19,8 +19,8 @@ template <typename T> class BinaryTree {
   public:
     BinaryTree();
     ~BinaryTree();
-    void print_preorder(); // TODO
-    void print_inorder(); // TODO
+    void print_preorder();  // TODO
+    void print_inorder();   // TODO
     void print_postorder(); // TODO
     void print_levelorder();
 
@@ -35,7 +35,8 @@ template <typename T> BinaryTree<T>::BinaryTree() : root(nullptr) {}
 template <typename T> BinaryTree<T>::~BinaryTree() {}
 
 template <typename T>
-void BinaryTree<T>::insert_levelorder(const std::vector<std::optional<T>> &vals) {
+void BinaryTree<T>::insert_levelorder(
+    const std::vector<std::optional<T>> &vals) {
     if (vals.empty()) {
         return;
     }
@@ -44,7 +45,7 @@ void BinaryTree<T>::insert_levelorder(const std::vector<std::optional<T>> &vals)
         throw std::runtime_error("Tree is not empty");
     }
 
-    if(vals.front().has_value()) {
+    if (vals.front().has_value()) {
         root = std::make_unique<Node>(vals.front().value());
     } else {
         root = nullptr;
@@ -57,14 +58,14 @@ void BinaryTree<T>::insert_levelorder(const std::vector<std::optional<T>> &vals)
         Node *node = q.front();
         q.pop();
 
-        if(node == nullptr) {
+        if (node == nullptr) {
             q.push(nullptr);
             q.push(nullptr);
-            i+=2;
+            i += 2;
             continue;
         }
 
-        if(vals[i].has_value()) {
+        if (vals[i].has_value()) {
             node->left = std::make_unique<Node>(vals[i].value());
         } else {
             node->left = nullptr;
@@ -73,7 +74,7 @@ void BinaryTree<T>::insert_levelorder(const std::vector<std::optional<T>> &vals)
         i++;
 
         if (i < vals.size()) {
-            if(vals[i].has_value()) {
+            if (vals[i].has_value()) {
                 node->right = std::make_unique<Node>(vals[i].value());
             } else {
                 node->right = nullptr;
@@ -98,13 +99,14 @@ template <typename T> void BinaryTree<T>::print_levelorder() {
         uint32_t level_size = q.size();
         bool not_null = false;
 
-        while(level_size > 0) {
+        while (level_size > 0) {
             Node *curr = q.front();
             q.pop();
             level_size--;
 
-            if(curr == nullptr) {
-                std::cout << "null" << " ";
+            if (curr == nullptr) {
+                std::cout << "null"
+                          << " ";
                 q.push(nullptr);
                 q.push(nullptr);
             } else {
@@ -115,7 +117,7 @@ template <typename T> void BinaryTree<T>::print_levelorder() {
             }
         }
 
-        if(!not_null) {
+        if (!not_null) {
             break;
         }
     }
